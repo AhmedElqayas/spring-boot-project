@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo
+
+    jpa:
+      hibernate:
+        ddl-auto: none
+
+  logging:
+    level:
+      org.flywaydb: DEBUG
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
+    username: appuser
+    password: password123
