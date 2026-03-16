@@ -40,6 +40,13 @@ public class User {
     private Set<Tag> tags = new HashSet<>();
     @OneToOne(mappedBy = "user")
     private Profile profile;
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> products = new HashSet<>();
 
     public void addAddress(Address address) {
         addresses.add(address);
