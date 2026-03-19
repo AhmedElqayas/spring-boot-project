@@ -24,7 +24,7 @@ public class Profile {
     private LocalDate dateOfBirth;
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     @MapsId
     @ToString.Exclude

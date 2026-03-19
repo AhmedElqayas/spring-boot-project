@@ -27,7 +27,7 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
     @ManyToMany
@@ -38,7 +38,7 @@ public class User {
     )
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
     @ManyToMany
     @JoinTable(
@@ -66,13 +66,6 @@ public class User {
     }
 
     public void removeTag(String tagName) {
-//        tags.removeIf(tag -> tag.getName().equalsIgnoreCase(tagName));
-//        tags.stream()
-//                .filter(tag -> tag.getName().equalsIgnoreCase(tagName))
-//                .findFirst()
-//                .get()
-//                .getUsers().remove(this);
-
         tags.removeIf(tag -> {
             if (tag.getName().equalsIgnoreCase(tagName)) {
                 tag.getUsers().remove(this);
@@ -80,5 +73,9 @@ public class User {
             }
             return false;
         });
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
     }
 }

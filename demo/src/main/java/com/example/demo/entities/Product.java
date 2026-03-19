@@ -24,7 +24,7 @@ public class Product {
     private String name;
     @Column(name = "price")
     private BigDecimal price;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     @ToString.Exclude
     private Category category;

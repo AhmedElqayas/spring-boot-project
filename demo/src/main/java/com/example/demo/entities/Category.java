@@ -27,12 +27,7 @@ public class Category {
     @Builder.Default
     private Set<Product> products = new HashSet<>();
 
-    public void addProduct(Product product) {
-        products.add(product);
-        product.setCategory(this);
-    }
-    public void removeProduct(Product product) {
-        products.remove(product);
-        product.setCategory(null);
+    public Category(String name) {
+        this.name = name;
     }
 }
